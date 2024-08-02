@@ -14,28 +14,20 @@
 # и not_primes в зависимости от значения переменной is_prime после проверки
 # (True - в prime, False - в not_prime).
 # Выведите списки primes и not_primes на экран(в консоль).
-
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 primes = []
 not_primes = []
-min_divisor = 2
-max_divisor = 10
-
 for is_prime in numbers:
     if is_prime != 1:
-        for i in range(min_divisor, max_divisor + 1):
-            if i != is_prime and i != max_divisor:
-                if is_prime % i == 0:
-                    flag = True
-                    if flag == True:
-                        not_primes.append(is_prime)
-                        break
-                    primes.append(is_prime)
-            else:
+        for i in range(2, is_prime):
+            if is_prime % i == 0:
+                flag = True
+                if flag == True:
+                    not_primes.append(is_prime)
+                    break
                 primes.append(is_prime)
-                break
-
+        else:
+            primes.append(is_prime)
 print("primes: ", primes)
 print("not_primes: ", not_primes)
-
 
