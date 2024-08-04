@@ -61,7 +61,6 @@ def code_pairs(number):
     for i in range(3, number):
         if number % i == 0:
             for t in range(1, i):
-                # for r in range(1, t+1):
                 if t != (i - t):
                     my_list = []
                     pairNumbersOne = t
