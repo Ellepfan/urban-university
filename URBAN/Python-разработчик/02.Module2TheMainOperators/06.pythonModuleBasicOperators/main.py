@@ -58,29 +58,16 @@
 
 def code_pairs(number):
     list_check = []
-    for i in range(3, number):
+    for i in range(3, number + 1):
         if number % i == 0:
-            for t in range(1, i):
-                if t != (i - t):
+            for multiple_number in range(1, i):
+                if multiple_number != (i - multiple_number):
                     my_list = []
-                    pairNumbersOne = t
-                    pairNumbersTwo = (i - t)
                     for j in range(1):
-                        my_list.append(pairNumbersOne)
-                        my_list.append(pairNumbersTwo)
+                        my_list.append(multiple_number)
+                        my_list.append(i - multiple_number)
                     list_check.append(my_list)
-
-    for e in range(1, number):
-        if e != (number - e):
-            my_list = []
-            pairNumbersOne = e
-            pairNumbersTwo = (number - e)
-            for j in range(1):
-                my_list.append(pairNumbersOne)
-                my_list.append(pairNumbersTwo)
-                list_check.append(my_list)
     return list_check
-
 
 def sorting_by_uniqueness(list_check):
     result = []
