@@ -19,75 +19,22 @@
 # числа n (от 3 до 20) программа выдавала нужный пароль result,
 # для одного введённого числа.
 
-# number = int(input("Введите число  от 3 до 20: "))
-# list_check = []
-# for i in range(3, number):
-#     if number % i == 0:
-#        for t in range(1, i):
-#            # for r in range(1, t+1):
-#             if t != (i - t):
-#                 my_list = []
-#                 pairNumbersOne = t
-#                 pairNumbersTwo = (i - t)
-#                 for j in range(1):
-#                     my_list.append(pairNumbersOne)
-#                     my_list.append(pairNumbersTwo)
-#                 list_check.append(my_list)
-#
-# for e in range(1, number):
-#     if e != (number - e):
-#         my_list = []
-#         pairNumbersOne = e
-#         pairNumbersTwo = (number - e)
-#         for j in range(1):
-#             my_list.append(pairNumbersOne)
-#             my_list.append(pairNumbersTwo)
-#             list_check.append(my_list)
-#
-# result = []
-# for h in range(len(list_check)):
-#     list_ = []
-#     list_.extend(list_check[h])
-#     revers_list_check = list_[::-1]
-#     if revers_list_check not in result:
-#         result.append(list_check[h])
-#
-# result = (sorted(result))
-# print(result)
-
-
-def code_pairs(number):
-    list_check = []
-    for i in range(3, number + 1):
-        if number % i == 0:
-            for multiple_number in range(1, i):
-                if multiple_number != (i - multiple_number):
-                    my_list = []
-                    for j in range(1):
-                        my_list.append(multiple_number)
-                        my_list.append(i - multiple_number)
-                    list_check.append(my_list)
-    return list_check
-
-def sorting_by_uniqueness(list_check):
-    result = []
-    for h in range(len(list_check)):
-        list_ = []
-        list_.extend(list_check[h])
-        revers_list_check = list_[::-1]
-        if revers_list_check not in result:
-            result.append(list_check[h])
-    return result
-
-
-def cod(numbers):
-    result = sorted(sorting_by_uniqueness(code_pairs(numbers)))
-    str_result = ""
-    for i in result:
-        for j in i:
-            str_result = str_result + str(j)
-    print(str_result)
-
-
 number = int(input("Введите число  от 3 до 20: "))
-cod(number)
+result = []
+for i in range(3, number + 1):
+    if number % i == 0:
+        for multiple_number in range(1, i):
+            if multiple_number != (i - multiple_number):
+                my_list = []
+                for j in range(1):
+                    my_list.append(multiple_number)
+                    my_list.append(i - multiple_number)
+                revers_my_list = my_list[::-1]
+                if revers_my_list not in result:
+                    result.append(my_list)
+result = sorted(result)
+str_result = ""
+for i in result:
+    for j in i:
+        str_result = str_result + str(j)
+print(str_result)
