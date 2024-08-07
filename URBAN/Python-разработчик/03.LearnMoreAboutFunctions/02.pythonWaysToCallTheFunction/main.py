@@ -34,25 +34,21 @@ def chek_mail(mail, list_chek):
         for peremen_chek in list_chek:
             if peremen_chek in mail:
                 if (len(mail) - len(peremen_chek)) == mail.find(peremen_chek):
-                    return True
+                    return "good"
 
 
 def send_email(message, recipient, *, sender="university.help@gmail.com"):
     list_chek = [".com", ".ru", ".net"]
-    if chek_mail(sender, list_chek) == True and chek_mail(recipient, list_chek) == True:
+    if chek_mail(sender, list_chek) == "good" and chek_mail(recipient, list_chek) == "good":
         if sender == recipient:
             print("Нельзя отправить письмо самому себе!")
-            return
         elif "university.help@gmail.com" in sender:
             print("Письмо успешно отправлено ", sender, "на адрес ", recipient)
-            return
         else:
             print("НЕСТАНДАРТНЫЙ ОТПРАВИТЕЛЬ! Письмо отправлено ", sender, "на адрес ", recipient)
-            return
     else:
         print("Невозможно отправить письмо с адреса ", sender, "на адрес ", recipient)
-        return
-
+    return
 
 send_email('Это сообщение для проверки связи', 'vasyok1337@gmail.com')
 send_email('Вы видите это сообщение как лучший студент курса!', 'urban.fan@mail.ru', sender='urban.info@gmail.com')
