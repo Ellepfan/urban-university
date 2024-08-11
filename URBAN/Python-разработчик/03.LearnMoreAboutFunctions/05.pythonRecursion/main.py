@@ -15,6 +15,7 @@
 # Если же длина str_number не больше 1, тогда вернуть оставшуюся цифру first.
 
 def get_multiplied_digits(number):
+    number = int(number)  #При преобразовании строки(str) в число(int) первые нули убираются. int('00123') -> 123.
     str_number = str(number)
     first = int(str_number[0])
     if len(str_number) > 1:
@@ -23,5 +24,5 @@ def get_multiplied_digits(number):
         return first
 
 
-result = get_multiplied_digits(40203)
+result = get_multiplied_digits(input("Введите 40203 или 000123: "))
 print(result)
