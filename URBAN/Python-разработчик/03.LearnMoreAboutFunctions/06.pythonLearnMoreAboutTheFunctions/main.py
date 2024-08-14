@@ -28,42 +28,19 @@
 #
 # Для примера, указанного выше, расчёт вёлся следующим образом:
 # 1 + 2 + 3 + len('a') + 4 + len('b') + 5 + 6 + len('cube') + 7 + .... + 35 = 99
-
-
-summa = 0
-
-
-def chek_int(value):
-    if not isinstance(value, int):
-        for i in value:
-            calculate_structure_sum(i)
-
-
 def calculate_structure_sum(*values):
-    global summa
+    summa = 0
     for value in values:
         if isinstance(value, int):
             summa = summa + value
-            return summa
-
         elif isinstance(value, str):
             summa = summa + len(value)
-            return summa
-
         elif isinstance(value, dict):
             pairs = list(value.items())
-            chek_int(pairs)
-
-        elif isinstance(value, tuple):
-            if not isinstance(value, int):
-                for i in value:
-                    calculate_structure_sum(i)
-
-        elif isinstance(value, list):
-            chek_int(value)
-
-        elif isinstance(value, set):
-            chek_int(value)
+            summa += calculate_structure_sum(pairs)
+        elif isinstance(value, tuple | list | set):
+            for i in value:
+                summa += calculate_structure_sum(i)
     return summa
 
 
