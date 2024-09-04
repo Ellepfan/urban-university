@@ -30,7 +30,7 @@ class House:
 
     def __eq__(self, other):
         if isinstance(other, int) or isinstance(other, House):
-            return self.number_of_floors == other.number_of_floors
+            return self.number_of_floors == other
 
     def __lt__(self, other):
         if isinstance(other, int) or isinstance(other, House):
@@ -68,12 +68,11 @@ class House:
 
 h1 = House('ЖК Эльбрус', 10)
 h2 = House('ЖК Акация', 20)
-
+print(h1 == 10)
 print(h1)
 print(h2)
 
 print(h1 == h2)  # __eq__
-
 h1 = h1 + 10  # __add__
 print(h1)
 print(h1 == h2)
