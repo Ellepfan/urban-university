@@ -28,24 +28,27 @@ class UrTube:
     current_user_info = []
 
     def log_in(self, password, age=None):  # вход в пользователя
-        if age != None:  # логин для только что зарегестрированного пользователя
-            if self in UrTube.users and password in UrTube.users:
-                UrTube.current_user = self
-                print(f"{UrTube.current_user} Регистрация завершена, выполнил вход")
-        else:  # вход в существующего пользователя
-            for user in UrTube.users:  # Проверка пароля пользователя
-                if self == user:
-                    password_user = UrTube.users[user][1]
-                    if password == password_user:
-                        if user == self:
-                            current_user_info = UrTube.users[user]
-                            UrTube.current_user_info.clear()
-                            UrTube.current_user_info.extend([current_user_info])
-                        UrTube.current_user = self
-                        print(f"Пользователь {UrTube.current_user} выполнил вход")
-                    else:
-                        print("Вы ввели не верный пароль")
-                        continue
+        for user in UrTube.users:  # Проверка пароля пользователя
+            if self == user:
+                if age == None:
+                    salt = b''
+                    password = hashlib.pbkdf2_hmac(
+                            'sha256',
+                        password.encode('utf-8'),  # Конвертирование пароля в байты
+                        salt,
+                            100000
+                    )
+                password_user = UrTube.users[user][1]
+                if password == password_user:
+                    if user == self:
+                        current_user_info = UrTube.users[user]
+                        UrTube.current_user_info.clear()
+                        UrTube.current_user_info.extend([current_user_info])
+                    UrTube.current_user = self
+                    print(f"Пользователь {UrTube.current_user} выполнил вход")
+                else:
+                    print("Вы ввели не верный пароль")
+                    continue
 
 
     def register(self, password, age):  # Регестрация пользователя
@@ -62,7 +65,7 @@ class UrTube:
             )
         UrTube.users[self] = self, password, age  # Добавление пользователя
         # в словарь список пользователей users = {}
-        UrTube.log_in(self, password)  # авто-логин зарегестрированного пользователя
+        UrTube.log_in(self, password, age)  # авто-логин зарегестрированного пользователя
 
     @classmethod
     def log_out(cls, classmethod):  # выход  из пользователя
@@ -137,13 +140,15 @@ ur.log_out(UrTube.current_user)
 ur.log_in('urban_pythonist', 'F8098FM8fjm9jmi')
 print(ur.current_user)
 
-ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
+ur.register('vasya_pupkin','F8098FM8fjm9jmi', 55)
 print(ur.current_user)
 ur.log_out(UrTube.current_user)
 
-ur.log_in('urban_pythonist', '')
+ur.log_in('vasya_pupkin','')
 print(ur.current_user)
-ur.log_out(UrTube.current_user)
+
+
+ur.log_in('vasya_pupkin','lolkekcheburek')
 print(ur.current_user)
 
 # Попытка воспроизведения несуществующего видео
