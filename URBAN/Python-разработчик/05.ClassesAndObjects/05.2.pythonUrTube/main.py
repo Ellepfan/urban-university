@@ -8,12 +8,11 @@ class User:
         self.password = password
         self.age = age
 
-    @staticmethod
-    def password(password: str):
+    def hesh_password(self: str):
         salt = b''
         password = hashlib.pbkdf2_hmac(
             'sha256',
-            password.encode('utf-8'),  # Конвертирование пароля в байты
+            self.encode('utf-8'),  # Конвертирование пароля в байты
             salt,
             100000
         )
@@ -42,7 +41,10 @@ class UrTube:
         for user in self.users:  # Проверка пароля пользователя
             if nickname == user:
                 password_user = self.users[user][1]
+                if password != password_user:
+                    password = User.hesh_password(password)
                 if password == password_user:
+                    password=password
                     if user == nickname:
                         current_user_info = self.users[user]
                         self.current_user_info.clear()
@@ -57,9 +59,10 @@ class UrTube:
         if nickname in self.users:
             print(f"Пользователь {nickname} уже существует")
             return
-        self.users[nickname] = nickname, password, age  # Добавление пользователя
+        hesh_password = User.hesh_password(password)
+        self.users[nickname] = nickname, hesh_password, age  # Добавление пользователя
         # в словарь список пользователей users = {}
-        self.log_in(nickname, password)  # авто-логин зарегестрированного пользователя
+        self.log_in(nickname, hesh_password)  # авто-логин зарегестрированного пользователя
 
     def log_out(self):  # выход  из пользователя
         if self.current_user != None:
@@ -131,15 +134,14 @@ ur.log_out()
 ur.log_in('urban_pythonist', 'F8098FM8fjm9jmi')
 print(ur.current_user)
 
-ur.register('vasya_pupkin','F8098FM8fjm9jmi', 55)
+ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
 print(ur.current_user)
 ur.log_out()
 
-ur.log_in('vasya_pupkin','')
+ur.log_in('vasya_pupkin', '')
 print(ur.current_user)
 
-
-ur.log_in('vasya_pupkin','lolkekcheburek')
+ur.log_in('vasya_pupkin', 'lolkekcheburek')
 print(ur.current_user)
 
 # Попытка воспроизведения несуществующего видео
