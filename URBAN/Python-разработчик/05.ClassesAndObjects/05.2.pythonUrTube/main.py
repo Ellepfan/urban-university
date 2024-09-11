@@ -44,7 +44,7 @@ class UrTube:
                 if password != password_user:
                     password = User.hesh_password(password)
                 if password == password_user:
-                    password=password
+                    password = password
                     if user == nickname:
                         current_user_info = self.users[user]
                         self.current_user_info.clear()
