@@ -136,8 +136,11 @@ class Cube(Figure):
                     self.list_sides.append(self.sides_value[0])
         self.__sides = self.list_sides
 
+    def get_sides(self):
+        return self.__sides
+
     def get_volume(self):
-        volume_cube = self.__sides[0] ** 3
+        volume_cube = self.get_sides()[0] ** 3
         return volume_cube
 
 
