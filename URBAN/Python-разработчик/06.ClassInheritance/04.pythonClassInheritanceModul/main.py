@@ -141,6 +141,7 @@ class Cube(Figure):
 
     def get_volume(self):
         volume_cube = self.get_sides()[0] ** 3
+        print(self.get_sides())
         return volume_cube
 
 
