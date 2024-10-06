@@ -6,7 +6,7 @@
 # Результатом должен быть список совпадения букв в той же позиции:
 # [False, True, True, False, False, False, False, False, True, False, False, False, False, False]
 # Где True - совпало, False - не совпало.
-from fcntl import LOCK_WRITE
+
 
 first = 'Мама мыла раму'
 second = 'Рамена мало было'
