@@ -13,36 +13,34 @@ class TournamentTest(unittest.TestCase):
         self.sportsman_2 = Runner("Андрей", 9)
         self.sportsman_3 = Runner("Ник", 3)
 
-    def race1(self):
+    def test_race1(self):
         competitions1 = Tournament(90, self.sportsman_1, self.sportsman_3)
         result1 = competitions1.start()
-        self.all_results['Тест первого раунда'] = result1
+        self.all_results['1 забег'] = result1
         test = result1[len(result1)].name
         self.assertTrue(test == "Ник")
 
 
-    def race2(self):
+    def test_race2(self):
         competitions2 = Tournament(90, self.sportsman_2, self.sportsman_3)
         result2 = competitions2.start()
-        self.all_results['Тест второго раунда'] = result2
+        self.all_results['2 забег'] = result2
         test = result2[len(result2)].name
         self.assertTrue(test == "Ник")
 
-    def race3(self):
+    def test_race3(self):
         competitions3 = Tournament(90, self.sportsman_1, self.sportsman_2, self.sportsman_3)
         result3 = competitions3.start()
-        self.all_results['Тест третьего раунда'] = result3
+        self.all_results['3 забег'] = result3
         test = result3[len(result3)].name
         self.assertTrue(test == "Ник")
 
     @classmethod
     def tearDownClass(cls):
-        pprint.pprint(cls.all_results)
-        pass
-        # for test_key, test_value in cls.all_results.items():
-        #     print(f'Тест: {test_key}')
-        #     for key, value in test_value.items():
-        #         print(f'\t{key}: {value.name}')
+        for test_key, test_value in cls.all_results.items():
+            print(f'Тест: {test_key}')
+            for key, value in test_value.items():
+                print(f'\t{key}: {value.name}')
 
 if __name__ == '__main__':
     unittest.main()
