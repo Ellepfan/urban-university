@@ -38,8 +38,3 @@ class Tournament:
         return finishers
 
 
-# all_results = {}
-# competitions1 = Tournament(90, Runner("Усэйн", 10), Runner("Ник", 3))
-# result1 = competitions1.start()
-# all_results['Тест первого раунда'] = result1
-# print(result1[len(result1)].name)
