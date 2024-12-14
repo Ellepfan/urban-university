@@ -11,7 +11,7 @@ from crud_functions import get_all_products, add_user, is_included, initiate_db
 all_products = get_all_products()
 initiate_db()
 
-api = ""
+api = "7578014280:AAEhFxtHnNdix3jGJojgwxhkfFDlcPPB8Fw"
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
@@ -105,6 +105,7 @@ async def set_age(message, state):
     await state.update_data(age=message.text)
     info_user = await state.get_data()
     add_user(info_user["username"], info_user["email"], info_user["age"])
+    await message.answer("Регистрация прошла успешно")
     await state.finish()
 
 
