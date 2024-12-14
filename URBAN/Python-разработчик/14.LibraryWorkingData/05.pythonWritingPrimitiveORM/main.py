@@ -11,7 +11,7 @@ from crud_functions import get_all_products, add_user, is_included, initiate_db
 all_products = get_all_products()
 initiate_db()
 
-api = "7578014280:AAEhFxtHnNdix3jGJojgwxhkfFDlcPPB8Fw"
+api = ""
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
