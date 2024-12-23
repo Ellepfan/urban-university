@@ -42,6 +42,5 @@ async def user_del(user_id:int):
         if i.id == user_id:
             users.pop(user_id-1)
             return f"User {user_id} has been deleted"
-        else:
-            raise HTTPException(status_code=404, detail="User was not found")
-
+    else:
+        raise HTTPException(status_code=404, detail=f"User was not found")
