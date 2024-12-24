@@ -28,16 +28,18 @@ async def add_users(username: Annotated[str, Path(min_length=5, max_length=20, d
     return user
 
 @app.put("/user/{user_id}/{username}/{age}")
-async def user_update(user_id: int, username: str, age:int)-> str:
-    try:
-        users[user_id-1] =User(id=user_id,username=username,age=age)
-        return f"he user {user_id} is updated"
-    except IndexError:
+async def user_update(user_id:Annotated[int, Path(ge=0, le=100, description="Enter User ID", examples= [{"1"}])],
+                      username: Annotated[str, Path(min_length=5, max_length=20, description="Enter username", examples= ["UrbanUser"])],
+                      age: Annotated[int, Path(ge=18, le=120, description="Enter age", examples=["24"])]) ->str:
+    for i in users:
+        if i.id == user_id:
+            users[user_id-1] =User(id=user_id,username=username,age=age)
+            return f"he user {user_id} is updated"
+    else:
         raise HTTPException(status_code=404, detail="User was not found")
 
 @app.delete("/user/{user_id}")
-async def user_del(user_id:int):
-
+async def user_del(user_id:Annotated[int, Path(ge=0, le=100, description="Enter User ID", examples= ["1"])]):
     for i in users:
         if i.id == user_id:
             users.pop(user_id-1)

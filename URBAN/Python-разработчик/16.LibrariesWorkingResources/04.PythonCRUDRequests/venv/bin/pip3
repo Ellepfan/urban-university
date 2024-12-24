@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' /media/kali/Documents/Grigory3v/urban/git/URBAN/Python-разработчик/16.LibrariesWorkingResources/04.PythonCRUDRequests/venv/bin/python3.12 "$0" "$@"
+'''exec' /media/kali/Documents/Grigory3v/urban/git/URBAN/Python-разработчик/16.LibrariesWorkingResources/04.PythonCRUDRequests/venv/bin/python "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re
