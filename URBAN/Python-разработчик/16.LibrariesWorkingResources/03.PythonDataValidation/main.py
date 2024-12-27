@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Path
 from typing import Annotated
-
+import warnings
+warnings.simplefilter("ignore", DeprecationWarning)
 
 app = FastAPI()
 
