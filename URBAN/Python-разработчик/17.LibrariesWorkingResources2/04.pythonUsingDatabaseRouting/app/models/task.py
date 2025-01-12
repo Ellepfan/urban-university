@@ -1,18 +1,19 @@
-from backend.db import Base
+from app.backend.db import Base
 from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import relationship
-from models import *
+from app.models import user
+
 
 class Task(Base):
-    __tablename__ = 'task'
-    __table_args__ = {'extend_existing': True}
+    __tablename__ = 'tasks'
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String)
-    content = Column(String)
-    priority = Column(Integer, default=0)
-    completed = Column(Boolean, default=False)
-    user_id = Column(Integer, ForeignKey('user.id'),index=True, nullable=False)
+    title = Column(String, index=True)
+    content = Column(String,  index=True)
+    priority = Column(Integer, index=True, default=0)
+    completed = Column(Boolean, index=True, default=False)
     slug = Column(String, unique=True, index=True)
+    user_id = Column(Integer, ForeignKey('users.id'), index=True, nullable=False)
+
     user = relationship('User', back_populates='tasks')
 
 

@@ -1,4 +1,6 @@
-from .db import SessionLocal
+from sqlalchemy.orm import Session
+from fastapi import Depends
+from app.backend.db import SessionLocal
 
 async def get_db():
     db = SessionLocal()
@@ -6,3 +8,4 @@ async def get_db():
         yield db
     finally:
         db.close()
+

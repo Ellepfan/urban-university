@@ -1,19 +1,19 @@
-from backend.db import Base
+from app.backend.db import Base
 from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import relationship
-from models import *
-
+from app.models import *
 
 
 class User(Base):
-    __tablename__ = 'user'
-    __table_args__ = {'extend_existing': True}
+    __tablename__ = 'users'
+
     id = Column(Integer, primary_key=True, index=True)
-    username = Column(String)
-    firstname = Column(String)
-    lastname = Column(String)
-    age = Column(Integer)
+    username = Column(String,unique=True,index=True)
+    firstname = Column(String,unique=True,index=True)
+    lastname = Column(String,unique=True,index=True)
+    age = Column(Integer,unique=True,index=True)
     slug = Column(String, unique=True, index=True)
+
     tasks = relationship('Task', back_populates='user')
 
 

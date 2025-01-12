@@ -1,11 +1,12 @@
 from app.backend.db import Base
 from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import relationship
-from app.models import *
+
+from app.models import user
 
 class Task(Base):
-    __tablename__ = 'task'
-    __table_args__ = {'extend_existing': True}
+    __tablename__ = 'tasks'
+    __table_args__ = {'keep_existing': True}
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String)
     content = Column(String)
@@ -13,7 +14,8 @@ class Task(Base):
     completed = Column(Boolean, default=False)
     user_id = Column(Integer, ForeignKey('user.id'),index=True, nullable=False)
     slug = Column(String, unique=True, index=True)
-    user = relationship('User', back_populates='tasks')
+
+    user = relationship('User', back_populates='task')
 
 
 from sqlalchemy.schema import CreateTable

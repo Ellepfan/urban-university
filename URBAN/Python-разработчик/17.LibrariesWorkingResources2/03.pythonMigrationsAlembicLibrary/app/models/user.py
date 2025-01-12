@@ -1,6 +1,7 @@
 from app.backend.db import Base
 from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import relationship
+
 from app.models import *
 
 class User(Base):
@@ -12,6 +13,9 @@ class User(Base):
     lastname = Column(String)
     age = Column(Integer)
     slug = Column(String,unique=True, index=True)
+    is_active = Column(Boolean, default=True)
+    parent_id = Column(Integer, ForeignKey('user.id'), nullable=True)
+
     tasks = relationship('Task', back_populates='user')
 
 from sqlalchemy.schema import CreateTable
