@@ -3,18 +3,18 @@ from django.shortcuts import render
 # Create your views here.
 
 def index(request):
-    main_p = 'Главная'
-    shop_p = 'Автомобильные запчасти'
-    basket_p = 'Корзина'
-    context = {
-        'main_p': main_p,
-        'shop_p': shop_p,
-        'basket_p': basket_p,
-    }
-    return render(request, 'index.html', context)
+    return render(request, 'index.html')
 
 def main_page(request):
-    return render(request, 'main_page.html')
+    main = 'Главная'
+    shop = 'Автомобильные запчасти'
+    basket = 'Корзина'
+    context = {
+        'main': main,
+        'shop': shop,
+        'basket': basket,
+    }
+    return render(request, 'main_page.html', context)
 
 def shop_page(request):
     return render(request, 'shop_page.html')
