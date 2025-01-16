@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}Мой интернет-магазин{% endblock %}
+    </title>
+</head>
+<body>
+    <header>
+<!--        <h1>Добро пожаловать в мой интернет-магазин</h1>-->
+    </header>
+    <main>
+        {% block pagename %}
+        <!-- заголовки страниц -->
+        {% endblock %}
+
+        {% block menu %}
+<!--            <a href="/main"><h2>{{main}}</h2></a>-->
+<!--            <a href="/main/shop"><h2>{{shop}}</h2></a>-->
+<!--            <a href="/main/basket"><h2>{{ basket }}</h2></a>-->
+            <a href="/main"><h3>Главная</h3></a>
+            <a href="/main/shop"><h3>Автомобильные запчасти</h3></a>
+            <a href="/main/basket"><h3>Корзина</h3></a>
+        {% endblock %}
+
+        {% block content %}
+        <!-- Контент страницы -->
+        {% endblock %}
+    </main>
+    <footer>
+<!--        <p> © 2025, Интернет-магазин </p>-->
+    </footer>
+</body>
+</html>
